@@ -15,6 +15,7 @@ spring:
         endpoint: oss-cn-hangzhou.aliyuncs.com
   thymeleaf:
     cache: false
+    encoding: UTF-8
 
 
 
