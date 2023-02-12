@@ -9,20 +9,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-/*
+import java.util.*;
 
 
 @Slf4j
@@ -34,14 +32,35 @@ public class GulimallProductApplicationTests {
     BrandService brandService;
 
     @Autowired
-    private OSSClient ossClient;
+    StringRedisTemplate stringRedisTemplate;
 
+ /*   @Autowired
+    private OSSClient ossClient;
+*/
 
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    RedissonClient redissonClient;
 
     @Test
+    public void redissonClientTest(){
+        System.out.println(redissonClient);
+    }
+
+
+
+    @Test
+    public void redisTest(){
+        ValueOperations<String, String> opsForValue = stringRedisTemplate.opsForValue();
+        opsForValue.set("hello","world"+ UUID.randomUUID().toString());
+        String helloString = opsForValue.get("hello");
+        System.out.println(helloString);
+    }
+
+
+ /*   @Test
     public void upload() throws IOException {
 
         InputStream inputStream=new FileInputStream("C:\\Users\\Ben\\Desktop\\dog.JPG");
@@ -51,7 +70,7 @@ public class GulimallProductApplicationTests {
         inputStream.close();
         System.out.println("upload done....");
 
-    }
+    }*/
 
     @Test
     public void testFindPath(){
@@ -83,4 +102,3 @@ public class GulimallProductApplicationTests {
     }
 
 }
-*/

@@ -13,8 +13,23 @@ spring:
       secret-key: pCy6jbPIrParR5rrysS5AT1bAdgymp
       oss:
         endpoint: oss-cn-hangzhou.aliyuncs.com
+
   thymeleaf:
-    cache: false
+    cache: true
+
+  redis:
+    host: 192.168.3.100
+
+# spring.cache.type=redis
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+      cache-null-values: true  # 设置为ture，可以解决缓存穿透问题
+    #  key-prefix: CACHE_
+      use-key-prefix: true
+
+
 
 
 
