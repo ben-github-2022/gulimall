@@ -33,5 +33,7 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     void updateCascade(CategoryEntity category);
 
+
+    List<CategoryEntity> getLevelOneCategories();
 }
 
