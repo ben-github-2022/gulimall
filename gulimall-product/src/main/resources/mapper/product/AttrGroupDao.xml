@@ -12,6 +12,7 @@
         <result property="icon" column="icon"/>
         <result property="catelogId" column="catelog_id"/>
     </resultMap>
+    <select id="getAttrGroupWithAttrsBySpuId" resultType="com.atguigu.gulimall.product.vo.SpuItemAttrGroupVo"></select>
 
 
 </mapper>

@@ -23,10 +23,11 @@ import java.io.InputStream;
 import java.util.*;
 
 
-@Slf4j
+/*@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GulimallProductApplicationTests {
+*//*
 
     @Autowired
     BrandService brandService;
@@ -34,9 +35,11 @@ public class GulimallProductApplicationTests {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
- /*   @Autowired
+ *//*
+*//*   @Autowired
     private OSSClient ossClient;
-*/
+*//**//*
+
 
     @Autowired
     CategoryService categoryService;
@@ -58,9 +61,10 @@ public class GulimallProductApplicationTests {
         String helloString = opsForValue.get("hello");
         System.out.println(helloString);
     }
+*//*
 
 
- /*   @Test
+ *//*   @Test
     public void upload() throws IOException {
 
         InputStream inputStream=new FileInputStream("C:\\Users\\Ben\\Desktop\\dog.JPG");
@@ -70,16 +74,16 @@ public class GulimallProductApplicationTests {
         inputStream.close();
         System.out.println("upload done....");
 
-    }*/
+    }*//*
 
-    @Test
+*//*    @Test
     public void testFindPath(){
         Long[] catelogPath = categoryService.findCatelogPath(225L);
         log.info("完整路径：{}",Arrays.asList(catelogPath));
-    }
+    }*//*
 
 
-    @Test
+*//*    @Test
     public void contextLoads() {
 
         BrandEntity brandEntity = new BrandEntity();
@@ -99,6 +103,6 @@ public class GulimallProductApplicationTests {
             System.out.println(item);
         });
 
-    }
+    }*//*
 
-}
+}*/

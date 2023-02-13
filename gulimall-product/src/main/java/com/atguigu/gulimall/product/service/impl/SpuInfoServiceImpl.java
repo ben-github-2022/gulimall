@@ -249,7 +249,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     @Override
     public void up(Long spuId) {
 
-        List<SkuInfoEntity> skus= skuInfoService.getSkubySpuId(spuId);
+        /*List<SkuInfoEntity> skus= skuInfoService.getSkubySpuId(spuId);
         skus.stream().map(sku->{
             SkuEsModel esModel=new SkuEsModel();
             BeanUtils.copyProperties(sku, esModel);
@@ -272,7 +272,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
 
             return esModel;
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList());*/
 
     }
 

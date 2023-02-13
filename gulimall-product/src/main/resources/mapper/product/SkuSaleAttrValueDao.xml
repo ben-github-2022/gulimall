@@ -12,6 +12,8 @@
         <result property="attrValue" column="attr_value"/>
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
+    <select id="getSkuSaleAttrValuesAsStringList" resultType="java.lang.String"></select>
+    <select id="getSaleAttrsBySouId" resultType="com.atguigu.gulimall.product.vo.SkuItemSaleAttrVo"></select>
 
 
 </mapper>

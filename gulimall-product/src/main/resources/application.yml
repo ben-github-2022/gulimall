@@ -34,6 +34,7 @@ spring:
 
 
 
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
@@ -50,3 +51,8 @@ logging:
   level:
     com.atguigu.gulimall: debug
 
+gulimall:
+  thread:
+    core-size: 30
+    keep-alive-time: 15
+    max-size: 50 # 注意要比core-size大，否则报异常

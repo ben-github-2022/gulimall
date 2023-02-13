@@ -12,4 +12,4 @@ spring:
 
 
 server:
-  port: 30000
+  port: 13000
