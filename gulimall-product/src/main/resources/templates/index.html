@@ -10,18 +10,17 @@
   <title>Document</title>
   <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
   <link rel="stylesheet" href="/static/index/css/GL.css">
-  <script src="/static//static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-
-  <script src="/static//static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
-
-  <script src="/static//static/index/js/swiper-3.4.2.min.js"></script>
+  <script src="/static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/static/index/js/swiper-3.4.2.min.js"></script>
+<!--  <script src="/static/index/js/swiper-3.4.2.min.js"></script>-->
 
 </head>
 
 <body>
   <div class="top_find">
     <div class="top_find_son">
-      <img src="/static//static/index/img/top_find_logo.png" alt="">
+      <img src="/static/index/img/top_find_logo.png" alt="">
       <div class="input_find">
         <input type="text" placeholder="卸妆水" />
         <span style="background: url('/static/index/img/img_12.png') 0 -1px;"></span>
@@ -97,10 +96,10 @@
   					</b>
         <ul>
           <li>
-            <a href="/static//登录页面\index.html">你好，请登录</a>
+            <a href="/static/登录页面\index.html">你好，请登录</a>
           </li>
           <li>
-            <a href="/static//注册页面\index.html" class="li_2">免费注册</a>
+            <a href="/static/注册页面\index.html" class="li_2">免费注册</a>
           </li>
           <span>|</span>
           <li>
@@ -117,12 +116,12 @@
         <input id="searchText" type="text" placeholder="" />
         <span style="background: url('/static/index/img/img_12.png') 0 -1px;"></span>
         <!--<button><i class="glyphicon"></i></button>-->
-        <a href="javascipt:search();" ><img src="/static/index/img/img_09.png" /></a>
+        <a href="javascript:search();" ><img src="/static/index/img/img_09.png" /></a>
       </div>
       <div class="header_ico">
         <div class="header_gw">
           <img src="/static/index/img/img_15.png" />
-          <span><a href="/static//购物车\One_JDshop.html">我的购物车</a></span>
+          <span><a href="/static/购物车\One_JDshop.html">我的购物车</a></span>
           <span>0</span>
         </div>
         <div class="header_ko">
@@ -204,70 +203,13 @@
         <div class="header_main_left">
           <ul>
             <li th:each="category:${categories}">
-              <a href="/static/#" class="header_main_left_a" th:attr="ctg-data=${category.catId}"><b th:text="${category.name}">家用电器222</b></a>
+              <a href="/static/#" class="header_main_left_a" th:attr="ctg-data=${category.getCatId()}">
+                <b th:text="${category.name}">家用电器</b></a>
             </li>
 
            <!-- <li>
               <a href="/static/#" class="header_main_left_a" ctg-data="3"><b>家用电器222</b></a>
             </li>-->
-
-            <!--<li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="2,4"><b>手机</b> / <b>运营商</b> / <b>数码</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="6"><b>电脑</b> / <b>办公</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="5,7"><b>家居</b> / <b>家具</b> / <b>家装</b> / <b>厨具</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a"  ctg-data="9"><b>男装</b> / <b>女装</b> / <b>童装</b> / <b>内衣</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a"  ctg-data="8"><b>美妆个护 </b>/ <b>宠物</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a"  ctg-data="11,13,10,15"><b>鞋</b> / <b>箱包</b> / <b>钟表</b> / <b>珠宝</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a"  ctg-data="17"> <b>运动</b> / <b>户外</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="16,21"><b>汽车</b> / <b>汽车用品</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="12,18"><b>母婴</b> / <b>玩具乐器</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="14,20"><b>食品</b> / <b>酒类</b> / <b>生鲜</b> / <b>特产</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ><b>礼品鲜花</b> / <b>农资绿植</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a"><b>医药保健</b> / <b>计生情趣</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="1"><b>图书</b> / <b>音像</b>/ <b>电子书</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="/static/#" class="header_main_left_a" ctg-data="19"><b>彩票</b> / <b>酒店</b> / <b>旅游</b> / <b>生活</b></a>
-
-            </li>
--->
           </ul>
 
         </div>

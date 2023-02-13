@@ -1,14 +1,9 @@
 package com.atguigu.gulimall.product.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.alibaba.nacos.client.logging.logback.LogbackNacosLogging;
-import com.atguigu.gulimall.product.entity.Catelog2Vo;
+import com.atguigu.gulimall.product.vo.Catelog2Vo;
 import com.atguigu.gulimall.product.service.CategoryBrandRelationService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -30,7 +25,6 @@ import com.atguigu.gulimall.product.dao.CategoryDao;
 import com.atguigu.gulimall.product.entity.CategoryEntity;
 import com.atguigu.gulimall.product.service.CategoryService;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 
 @Service("categoryService")
@@ -50,7 +44,43 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     //缓存中存放的是json格式的字符串，从redis获取json字符串后也需要转换成对应的对象
     //TODO redis堆外内存溢出：lettuce的bug，在使用netty通信时产生溢出
     public Map<String, List<Catelog2Vo>> getCatalogJson() {
-        String catelogJson = redisTemplate.opsForValue().get("catelogJson");
+        //查出所有1级分类
+        List<CategoryEntity> levelOneCategories = getLevelOneCategories();
+        //封装数据
+        Map<String, List<Catelog2Vo>> stringListMap = levelOneCategories.stream().collect(Collectors.toMap(k -> k.getCatId().toString(), v -> {
+                    //每一个一级分类，查到所有相应的二级分类
+                    List<CategoryEntity> categoryEntities = baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid",
+                            v.getCatId()));
+
+                    //封装上面的结果
+                    List<Catelog2Vo> catelog2VoList = null;
+
+                    if (categoryEntities != null) {
+                        catelog2VoList = categoryEntities.stream().map(item -> {
+                            Catelog2Vo catelog2Vo1 = new Catelog2Vo(v.getCatId().toString(), null, item.getCatId().toString(), item.getName());
+                            //找当前二级分类下的三级分类vo
+                            List<CategoryEntity> categoryEntities3 = baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid",
+                                    item.getCatId()));
+                            if (categoryEntities3 != null) {
+
+                                List<Catelog2Vo.Catelog3Vo> catelog3VoList = categoryEntities3.stream().map(l3 -> {
+                                    //封装成3级分类的制定格式
+                                    Catelog2Vo.Catelog3Vo catelog3Vo = new Catelog2Vo.Catelog3Vo(item.getCatId().toString(), l3.getCatId().toString(), l3.getName());
+                                    return catelog3Vo;
+                                }).collect(Collectors.toList());
+                                catelog2Vo1.setCatalog3List(catelog3VoList);
+
+                            }
+                            return catelog2Vo1;
+                        }).collect(Collectors.toList());
+                    }
+                    return catelog2VoList;
+                }
+        ));
+
+        return stringListMap;
+
+      /*  String catelogJson = redisTemplate.opsForValue().get("catelogJson");
         if (StringUtils.isEmpty(catelogJson)) {
             //缓存没有，需求去数据库查询
             //在高并发条件下，需要考虑高并发的请求问题，需要将getCatalogJsonFromDB方法加锁
@@ -59,16 +89,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             //同时返回数据库的查询结果
             return catelogJsonFromDB;
         }
-
         //将redis返回的json字符串转换成为Map<String,List<Catelog2Vo>对象
-
         Map<String, List<Catelog2Vo>> result = JSON.parseObject(catelogJson,
                 new TypeReference<Map<String, List<Catelog2Vo>>>() {
                 });
-
         //
-
-        return result;
+        return result;*/
     }
 
 
