@@ -1,4 +1,4 @@
-package com.atguigu.gulimall.thirdparty.component;
+package com.atguigu.gulimall.thirdparty.entity;
 
 import com.atguigu.gulimall.thirdparty.utils.HttpUtils;
 import lombok.Data;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-@ConfigurationProperties(prefix="spring.cloud.alicloud.sms")
-@Component
 @Data
+@ConfigurationProperties(prefix = "spring.cloud.alicloud.smstest")
+@Component
 public class SmsComponent {
     private String host;
     private String path;

@@ -1,28 +1,31 @@
 package com.atguigu.gulimall.thirdparty;
 
-import com.aliyun.oss.OSSClient;
-import com.atguigu.gulimall.thirdparty.component.SmsComponent;
+import com.aliyun.oss.OSS;
+import com.atguigu.gulimall.thirdparty.entity.SmsComponent;
 import com.atguigu.gulimall.thirdparty.utils.HttpUtils;
 import org.apache.http.HttpResponse;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class GulimallThirdPartyApplicationTests {
     @Autowired
     SmsComponent smsComponent;
 
+    @Autowired
+    OSS ossClient;
+
     @Test
     public void testSendCode(){
-        smsComponent.sendSmsCode("13817785931","**code**:8888,**minute**:5");
+        smsComponent.sendSmsCode("13817785931","**code**:9999,**minute**:5");
     }
 
     @Test
@@ -36,7 +39,7 @@ public class GulimallThirdPartyApplicationTests {
         headers.put("Authorization", "APPCODE " + appcode);
         Map<String, String> querys = new HashMap<String, String>();
         querys.put("mobile", "13817785931");
-        querys.put("param", "**code**:12345,**minute**:5");
+        querys.put("param", "**code**:8888,**minute**:5");
 
 //smsSignId（短信前缀）和templateId（短信模板），可登录国阳云控制台自助申请。参考文档：http://help.guoyangyun.com/Problem/Qm.html
 

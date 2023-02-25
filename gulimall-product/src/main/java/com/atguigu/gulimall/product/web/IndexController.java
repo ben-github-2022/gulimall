@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class IndexController {
 
 
     // index/catalog.json
-    @ResponseBody
+
     @GetMapping("/index/catalog.json")
     public Map<String,List<Catelog2Vo>> getCatalogJson(){
 
@@ -42,7 +43,7 @@ public class IndexController {
 
 
 
-    @ResponseBody
+
     @GetMapping("/write")
     public String writeValue(){
         RReadWriteLock myReadWriteLock = redissonClient.getReadWriteLock("myReadWriteLock");
@@ -61,7 +62,7 @@ public class IndexController {
         return value;
     }
 
-    @ResponseBody
+
     @GetMapping("/read")
     public String readValue(){
         RReadWriteLock myReadWriteLock = redissonClient.getReadWriteLock("myReadWriteLock");
@@ -81,7 +82,7 @@ public class IndexController {
 
 
 
-    @ResponseBody
+
     @GetMapping("/hello")
     public String hello() {
         RLock myLock = redissonClient.getLock("myLock");
